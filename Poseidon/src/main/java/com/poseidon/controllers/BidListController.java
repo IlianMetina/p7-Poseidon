@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,11 @@ public class BidListController {
         return bidListService.findAllBids();
     }
 
+    @PutMapping("/bidlist/update-bid/")
+    public BidList updateBid(@RequestParam Integer id, BidList bidList){
+        return this.bidListService.updateBid(id, bidList);
+    }
+
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
         return "bidList/add";
@@ -43,7 +45,7 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable Integer id, Model model) {
         // TODO: get Bid by Id and to model then show to the form
         return "bidList/update";
     }
