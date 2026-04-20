@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 
 @Controller
 public class BidListController {
@@ -22,26 +24,32 @@ public class BidListController {
     }
 
     @RequestMapping("/bidList/list")
-    public List<BidList> home(Model model)
+    public String home(Model model)
     {
         // TODO: call service find all bids to show to the view
-        return bidListService.findAllBids();
+        model.addAttribute("bids", bidListService.findAllBids());
+        return "bidList/list";
+
     }
 
-    @PutMapping("/bidlist/update-bid/")
-    public BidList updateBid(@RequestParam Integer id, BidList bidList){
-        return this.bidListService.updateBid(id, bidList);
+    @PostMapping("/bidlist/update/{id}")
+    public String updateBid(@PathVariable Integer id, @Valid BidList bidList, BindingResult result, Model model){
+        this.bidListService.updateBid(id, bidList);
+        return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/add")
-    public String addBidForm(BidList bid) {
+    public String addBidForm(BidList bidList) {
         return "bidList/add";
     }
 
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
-        return "bidList/add";
+        if(result.hasErrors()) return "bidList/add";
+        bidListService.addBid(bid);
+
+        return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/update/{id}")
@@ -50,15 +58,8 @@ public class BidListController {
         return "bidList/update";
     }
 
-    @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
-                             BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
-        return "redirect:/bidList/list";
-    }
-
     @GetMapping("/bidList/delete/{id}")
-    public String deleteBid(@PathVariable("id") Integer id, Model model) {
+    public String deleteBid(@PathVariable Integer id, Model model) {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
         return "redirect:/bidList/list";
     }
