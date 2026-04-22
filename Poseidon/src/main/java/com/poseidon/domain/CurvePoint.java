@@ -17,7 +17,7 @@ public class CurvePoint {
     @Setter(AccessLevel.NONE)
     private Integer id;
 
-    @Setter(AccessLevel.NONE)
+    @Setter
     private Integer curveId;
 
     @Setter

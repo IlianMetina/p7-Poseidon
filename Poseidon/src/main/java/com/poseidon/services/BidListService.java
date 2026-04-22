@@ -16,11 +16,7 @@ public class BidListService {
     }
 
     public List<BidList> findAllBids(){
-        List<BidList> allBids = this.bidListRepo.findAll();
-        if(allBids.isEmpty()){
-            throw new RuntimeException("No list found");
-        }
-        return allBids;
+        return this.bidListRepo.findAll();
     }
 
     public BidList addBid(BidList bidList){
@@ -54,6 +50,14 @@ public class BidListService {
         bidListRepo.save(bidToUpdate);
 
         return bidToUpdate;
+    }
+
+    public BidList findById(Integer id){
+        return this.bidListRepo.findById(id).orElseThrow(() -> new RuntimeException("No bidlist match for this id"));
+    }
+
+    public void deleteBid(BidList bid){
+        this.bidListRepo.delete(bid);
     }
 
 }

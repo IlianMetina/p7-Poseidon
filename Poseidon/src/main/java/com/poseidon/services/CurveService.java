@@ -32,4 +32,17 @@ public class CurveService {
         curveRepo.save(curvePointToUpdate);
         return curvePointToUpdate;
     }
+
+    public CurvePoint addCurvePoint(CurvePoint curvePoint){
+        return this.curveRepo.save(curvePoint);
+    }
+
+    public CurvePoint findById(Integer id){
+        return this.curveRepo.findById(id).orElseThrow(() -> new RuntimeException("No curvepoint found"));
+    }
+
+    public void deleteCurvePoint(CurvePoint curvePoint){
+        this.curveRepo.delete(curvePoint);
+    }
+
 }

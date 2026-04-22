@@ -14,9 +14,43 @@
 
 	<div class="row">
 		<form action="#" th:action="@{/bidList/update/{id}(id=${bidList.bidListId})}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
-			 -->
+			<label for="account">Account</label>
+			<input id="account" type="text" th:field="*{account}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></small>
+			<br/>
+
+			<label for="type">Type</label>
+			<input id="type" type="text" th:field="*{type}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></small>
+			<br/>
+
+			<label for="bidQuantity">Bid Quantity</label>
+			<input id="bidQuantity" type="number" step="0.01" th:field="*{bidQuantity}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('bidQuantity')}" th:errors="*{bidQuantity}"></small>
+			<br/>
+
+			<label for="askQuantity">Ask Quantity</label>
+			<input id="askQuantity" type="number" step="0.01" th:field="*{askQuantity}" class="form-control" />
+			<br/>
+
+			<label for="bid">Bid</label>
+			<input id="bid" type="number" step="0.01" th:field="*{bid}" class="form-control" />
+			<br/>
+
+			<label for="ask">Ask</label>
+			<input id="ask" type="number" step="0.01" th:field="*{ask}" class="form-control" />
+			<br/>
+
+			<label for="benchmark">Benchmark</label>
+			<input id="benchmark" type="text" th:field="*{benchmark}" class="form-control" />
+			<br/>
+
+			<label for="commentary">Commentary</label>
+			<textarea id="commentary" th:field="*{commentary}" class="form-control" rows="3"></textarea>
+			<br/>
+
+			<button type="submit" class="btn btn-primary btn-sm">Update</button>
+			<a href="/bidList/list" class="btn btn-danger btn-sm">Cancel</a>
 		</form>
 	</div>
 

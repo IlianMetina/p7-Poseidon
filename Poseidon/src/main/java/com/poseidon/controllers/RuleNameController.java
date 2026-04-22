@@ -1,6 +1,7 @@
 package com.poseidon.controllers;
 
 import com.poseidon.domain.RuleName;
+import com.poseidon.services.RuleNameService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +11,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 
 @Controller
 public class RuleNameController {
     // TODO: Inject RuleName service
 
+    private final RuleNameService ruleNameService;
+
+    public RuleNameController(RuleNameService ruleNameService){
+        this.ruleNameService = ruleNameService;
+    }
+
     @RequestMapping("/ruleName/list")
     public String home(Model model)
     {
         // TODO: find all RuleName, add to model
+        List<RuleName> allRuleNames = this.ruleNameService.findAll();
+        model.addAttribute("rulesNames", allRuleNames);
         return "ruleName/list";
     }
 

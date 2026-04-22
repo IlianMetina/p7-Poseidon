@@ -7,21 +7,45 @@
 <link rel="stylesheet" href="../../css/bootstrap.min.css" >
 </head>
 <body>
-<div class="container">
+	<div class="container">
 
-	<div class="row">
-		<h2>Add New Curve Point</h2>
+		<div class="row">
+			<h2>Add New Curve Point</h2>
+		</div>
+
+		<div class="row">
+			<form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
+				<!--
+				TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
+				 -->
+				<label for="asOfDate">Date</label>
+				<input id="asOfDate" type="datetime-local" th:field="*{asOfDate}" class="form-control" />
+				<small class="text-danger" th:if="${#fields.hasErrors('asOfDate')}" th:errors="*{asOfDate}"></small>
+				<br/>
+
+				<label for="term">Term</label>
+				<input id="term" type="text" th:field="*{term}" class="form-control" />
+				<small class="text-danger" th:if="${#fields.hasErrors('term')}" th:errors="*{term}"></small>
+				<br/>
+
+				<label for="curveId">Curve ID</label>
+				<input id="curveId" type="text" th:field="*{curveId}" class="form-control" />
+				<small class="text-danger" th:if="${#fields.hasErrors('curveId')}" th:errors="*{curveId}"></small>
+				<br/>
+
+				<label for="value">Value</label>
+				<input id="value" type="number" step="0.01" th:field="*{value}" class="form-control" />
+				<small class="text-danger" th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></small>
+				<br/>
+
+				<label for="creationDate">Creation Date</label>
+				<input id="creationDate" type="datetime-local" step="0.01" th:field="*{creationDate}" class="form-control" />
+				<br/>
+
+				<button type="submit" class="btn btn-primary btn-sm">Save</button>
+				<a href="/bidList/list" class="btn btn-danger btn-sm">Cancel</a>
+			</form>
+		</div>
 	</div>
-
-	<div class="row">
-		<form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
-			 -->
-
-		</form>
-	</div>
-
-</div>
 </body>
 </html>
