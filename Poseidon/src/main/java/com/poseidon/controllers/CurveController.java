@@ -56,7 +56,6 @@ public class CurveController {
     @PostMapping("/curvePoint/update/{id}")
     public String updateBid(@PathVariable Integer id, @Valid CurvePoint curvePoint,
                             BindingResult result, Model model) {
-
         this.curveService.updateCurvePoint(id, curvePoint);
         // TODO: check required fields, if valid call service to update Curve and return Curve list
         return "redirect:/curvePoint/list";
@@ -65,6 +64,7 @@ public class CurveController {
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
+        System.out.println("Entrée delete route");
         CurvePoint curvePoint = this.curveService.findById(id);
         this.curveService.deleteCurvePoint(curvePoint);
         return "redirect:/curvePoint/list";

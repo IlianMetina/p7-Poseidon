@@ -16,11 +16,7 @@ public class CurveService {
     }
 
     public List<CurvePoint> findAllCurvePoints(){
-        List<CurvePoint> allCurvePoints = this.curveRepo.findAll();
-        if(allCurvePoints.isEmpty()){
-            throw new RuntimeException("Empty");
-        }
-        return allCurvePoints;
+        return this.curveRepo.findAll();
     }
 
     public CurvePoint updateCurvePoint(Integer id, CurvePoint curvePoint){
@@ -29,6 +25,7 @@ public class CurveService {
         curvePointToUpdate.setValue(curvePoint.getValue());
         curvePointToUpdate.setCreationDate(curvePoint.getCreationDate());
         curvePointToUpdate.setAsOfDate(curvePoint.getAsOfDate());
+        curvePointToUpdate.setCurveId(curvePoint.getCurveId());
         curveRepo.save(curvePointToUpdate);
         return curvePointToUpdate;
     }

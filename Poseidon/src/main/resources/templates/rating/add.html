@@ -14,11 +14,32 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/rating/validate}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/rating/validate}" th:object="${ratings}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
 			TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
 			 -->
+			<label for="">Moodys Rating</label>
+			<input id="moodysRating" type="text" th:field="*{moodysRating}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('moodysRating')}" th:errors="*{moodysRating}"></small>
+			<br/>
 
+			<label for="">sandPRating</label>
+			<input id="sandPRating" type="text" th:field="*{sandPRating}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('sandPRating')}" th:errors="*{sandPRating}"></small>
+			<br/>
+
+			<label for="">fitchRating</label>
+			<input id="fitchRating" type="text" th:field="*{fitchRating}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('fitchRating')}" th:errors="*{fitchRating}"></small>
+			<br/>
+
+			<label for="">orderNumber</label>
+			<input id="orderNumber" type="text" th:field="*{orderNumber}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></small>
+			<br/>
+
+			<button type="submit" class="btn btn-primary btn-sm">Save</button>
+			<a href="/rating/list" class="btn btn-danger btn-sm">Cancel</a>
 		</form>
 	</div>
 

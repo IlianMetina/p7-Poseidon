@@ -18,7 +18,33 @@
 			<!--
 			TODO: Create a form to input the values of RuleName, there are 2 buttons: Save data and Cancel to the list RuleName
 			 -->
+			<label for="name">Name</label>
+			<input id="name" type="text" th:field="*{name}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+			<br/>
 
+			<label for="description">Description</label>
+			<input id="description" type="text" th:field="*{description}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+			<br/>
+
+			<label for="json">Json</label>
+			<input id="json" type="text" th:field="*{json}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('json')}" th:errors="*{json}"></small>
+			<br/>
+
+			<label for="template">Template</label>
+			<input id="template" type="text" th:field="*{template}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('template')}" th:errors="*{template}"></small>
+			<br/>
+
+			<label for="sqlStr">SQL</label>
+			<input id="sqlStr" type="text" th:field="*{sqlStr}" class="form-control" />
+			<small class="text-danger" th:if="${#fields.hasErrors('sqlStr')}" th:errors="*{sqlStr}"></small>
+			<br/>
+
+			<button type="submit" class="btn btn-primary btn-sm">Save</button>
+			<a href="/ruleName/list" class="btn btn-danger btn-sm">Cancel</a>
 		</form>
 	</div>
 

@@ -35,7 +35,6 @@
 					<th>json</th>
 					<th>template</th>
 					<th>sql</th>
-					<th>sqlPart</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -49,10 +48,9 @@
 				<td th:text="${rn.getJson()}"></td>
 				<td th:text="${rn.getTemplate()}"></td>
 				<td th:text="${rn.getSqlStr()}"></td>
-				<td th:text="${rn.getSqlPart()}"></td>
 
 				<td>
-					<a th:href="@{/ruleName/update/{id}(id=${rn.getId()()})}"
+					<a th:href="@{/ruleName/update/{id}(id=${rn.getId()})}"
 					   class="btn btn-primary btn-sm">
 						Edit
 					</a>
