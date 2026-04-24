@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "bidlist")
+@Table(name = "bidList")
 @Getter
 @NoArgsConstructor
 public class BidList {

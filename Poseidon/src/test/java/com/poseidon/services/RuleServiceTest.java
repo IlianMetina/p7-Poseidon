@@ -47,6 +47,25 @@ public class RuleServiceTest {
     }
 
     @Test
+    public void updateRuleNameTest(){
+        RuleName updated = new RuleName();
+        updated.setName("jean");
+        updated.setDescription("moi");
+        updated.setTemplate("templatetest");
+
+        when(ruleNameRepository.findById(1)).thenReturn(Optional.of(ruleName));
+        when(ruleNameRepository.save(any(RuleName.class))).thenReturn(ruleName);
+
+        RuleName result = ruleNameService.updateRuleName(1, updated);
+
+        assertEquals("jean", result.getName());
+        assertEquals("moi", result.getDescription());
+        assertEquals("templatetest", result.getTemplate());
+
+        verify(ruleNameRepository, times(1)).save(ruleName);
+    }
+
+    @Test
     public void addRuleNameTest(){
         when(ruleNameRepository.save(ruleName)).thenReturn(ruleName);
 

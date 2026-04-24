@@ -5,7 +5,7 @@ import lombok.*;
 
 
 @Entity
-@Table(name = "rulename")
+@Table(name = "ruleName")
 @Getter
 @NoArgsConstructor
 public class RuleName {

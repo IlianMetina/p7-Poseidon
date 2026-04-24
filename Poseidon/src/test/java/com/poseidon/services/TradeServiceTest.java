@@ -1,6 +1,5 @@
 package com.poseidon.services;
 
-import com.poseidon.domain.Rating;
 import com.poseidon.domain.Trade;
 import com.poseidon.repositories.TradeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +52,25 @@ public class TradeServiceTest {
         Trade result = tradeService.addTrade(trade);
         assertNotNull(result);
         assertEquals("TestAccount", result.getAccount());
+        verify(tradeRepository, times(1)).save(trade);
+    }
+
+    @Test
+    public void updateRuleNameTest(){
+        Trade updated = new Trade();
+        updated.setAccount("AccountTesting");
+        updated.setType("TypeTest");
+        updated.setBuyQuantity(17.0);
+
+        when(tradeRepository.findById(1)).thenReturn(Optional.of(trade));
+        when(tradeRepository.save(any(Trade.class))).thenReturn(trade);
+
+        Trade result = tradeService.updateTrade(1, updated);
+
+        assertEquals("AccountTesting", result.getAccount());
+        assertEquals("TypeTest", result.getType());
+        assertEquals(17.0, result.getBuyQuantity());
+
         verify(tradeRepository, times(1)).save(trade);
     }
 
