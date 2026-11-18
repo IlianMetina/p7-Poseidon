@@ -2,7 +2,6 @@ package com.poseidon.controllers;
 
 import com.poseidon.domain.CurvePoint;
 import com.poseidon.domain.RuleName;
-import com.poseidon.services.CurveService;
 import com.poseidon.services.RuleNameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
